@@ -28,9 +28,14 @@ jobs:
       run: |
         source venv/bin/activate
         python app.py
+    - name: Debug Info
+      run: |
+        echo "GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}"
+        echo "PWD: $(pwd)"
+        ls -la
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         publish_dir: ./build
